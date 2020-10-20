@@ -2,9 +2,9 @@ package task3;
 
 public class Picture {
 
-    private final Circle circle;
-    private final Parabola parabola;
-    private final Rectangle rectangle;
+    public final Circle circle;
+    public final Parabola parabola;
+    public final Rectangle rectangle;
 
     public Picture(Circle circle, Parabola parabola,  Rectangle rectangle) {
         this.circle = circle;
@@ -12,19 +12,19 @@ public class Picture {
         this.rectangle = rectangle;
     }
 
-    public Color getColor(double x, double y) {
+    public SimpleColor getColor(double x, double y) {
 
-    if (parabola.isPointInsideParabola(x, y) && (rectangle.isPointInsideRectangle(x, y))) return Color.GRAY;
+    if (parabola.isPointInsideParabola(x, y) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GRAY;
 
-    if ((circle.isPointInsideCircle(x, y)) && (rectangle.isPointInsideRectangle(x, y))) return Color.GREEN;
+    if ((circle.isPointInsideCircle(x, y)) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GREEN;
 
-    if (parabola.isPointInsideParabola(x, y)) return Color.WHITE;
+    if (parabola.isPointInsideParabola(x, y)) return SimpleColor.WHITE;
 
-    if (circle.isPointInsideCircle(x, y)) return Color.BLUE;
+    if (circle.isPointInsideCircle(x, y)) return SimpleColor.BLUE;
 
-    if (rectangle.isPointInsideRectangle(x, y)) return Color.YELLOW;
+    if (rectangle.isPointInsideRectangle(x, y)) return SimpleColor.YELLOW;
 
-    return Color.GRAY;
+    return SimpleColor.GRAY;
     }
 
 }

@@ -1,6 +1,6 @@
 package task3;
 
-public enum  Color {
+public enum SimpleColor {
 
     GRAY,
     BLUE,
@@ -9,3 +9,5 @@ public enum  Color {
     WHITE,
 
 }
+
+
