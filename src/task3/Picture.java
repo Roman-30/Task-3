@@ -6,7 +6,7 @@ public class Picture {
     public final Parabola parabola;
     public final Rectangle rectangle;
 
-    public Picture(Circle circle, Parabola parabola,  Rectangle rectangle) {
+    public Picture(Circle circle, Parabola parabola, Rectangle rectangle) {
         this.circle = circle;
         this.parabola = parabola;
         this.rectangle = rectangle;
@@ -14,17 +14,17 @@ public class Picture {
 
     public SimpleColor getColor(double x, double y) {
 
-    if (parabola.isPointInsideParabola(x, y) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GRAY;
+        if (parabola.isPointInsideParabola(x, y) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GRAY;
 
-    if ((circle.isPointInsideCircle(x, y)) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GREEN;
+        if ((circle.isPointInsideCircle(x, y)) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GREEN;
 
-    if (parabola.isPointInsideParabola(x, y)) return SimpleColor.WHITE;
+        if (parabola.isPointInsideParabola(x, y)) return SimpleColor.WHITE;
 
-    if (circle.isPointInsideCircle(x, y)) return SimpleColor.BLUE;
+        if (circle.isPointInsideCircle(x, y)) return SimpleColor.BLUE;
 
-    if (rectangle.isPointInsideRectangle(x, y)) return SimpleColor.YELLOW;
+        if (rectangle.isPointInsideRectangle(x, y)) return SimpleColor.YELLOW;
 
-    return SimpleColor.GRAY;
+        return SimpleColor.GRAY;
     }
 
 }

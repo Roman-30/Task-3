@@ -14,7 +14,6 @@ public class Parabola {
     public boolean isPointInsideParabola(double x, double y) {
         return y > a * x * x + b * x + c;
     }
-
 }
 
 

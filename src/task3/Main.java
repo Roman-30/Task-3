@@ -1,6 +1,5 @@
 package task3;
 
-import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
@@ -8,64 +7,61 @@ public class Main {
     public static void main(String[] args) {
         Picture picture = new Picture(new Circle(-5, 0, 4), new Parabola(1, -4, -2), new Rectangle());
 
-        test(picture);
-
-        double x = readPointCoordinate("x --> ");
-        double y = readPointCoordinate("y --> ");
-
-        outputColourForPoint(x, y, picture);
-
+        testPoint(picture);
+        startProgram(picture);
     }
 
-    public static void outputColourForPoint(double x, double y, Picture picture) {
-        System.out.printf("The area which contains this point (%.1f, %.1f) is %S", x, y, picture.getColor(x,y));
-    }
+    public static void startProgram(Picture picture) {
+        double restart = readNumber();
 
-    public static void test(Picture picture) {
-        Point[] coordinate = new Point[6];
-        coordinate[0] = new Point(2,3);
-        coordinate[1] = new Point(-5,0);
-        coordinate[2] = new Point(-1,-2);
-        coordinate[3] = new Point(-2,1);
-        coordinate[4] = new Point(0,4);
+        while (restart == 1) {
+            double x = readPointCoordinate("Enter point coordinate x --> ");
+            double y = readPointCoordinate("Enter point coordinate y --> ");
 
+            SimpleColor color = picture.getColor(x, y);
 
-        for (int i = 0; i < 5; i++) {
+            printColor(x, y, color);
 
-            System.out.printf("%s --> ", coordinate[i], picture);
+            restart = readPointCoordinate("Enter number 1 if you want to input new coordinates or 0 if you want finish program - ");
 
-            SimpleColor color = SimpleColor.GRAY;
-
-            switch (i) {
-                case (0):
-                    color = SimpleColor.WHITE;
-                    break;
-                case (1):
-                    color = SimpleColor.BLUE;
-                    break;
-                case (2):
-                    color = SimpleColor.YELLOW;
-                    break;
-                case (3):
-                    color = SimpleColor.GREEN;
-                    break;
-                case (4):
-                    color = SimpleColor.GRAY;
-                    break;
-
+            if (restart == 0) {
+                System.out.print("End.");
             }
-
-            System.out.printf("%s\n" , color);
-
-            }
+        }
     }
 
+    public static void testPoint(Picture picture) {
+        double[][] coordinates = {{2, -5, -1, 8, -2, 0}, {3, 0, -2, 2, 1, 4}};
+        SimpleColor[] correctResults = {SimpleColor.WHITE, SimpleColor.BLUE, SimpleColor.YELLOW, SimpleColor.GRAY, SimpleColor.GREEN, SimpleColor.GRAY};
+
+        for (int i = 0; i < 6; i++) {
+            SimpleColor color = picture.getColor(coordinates[0][i], coordinates[1][i]);
+            printColor(coordinates[0][i], coordinates[1][i], color);
+            SimpleColor rightColor = correctResults[i];
+
+            System.out.printf("%s\n", checkResult(color, rightColor));
+        }
+    }
 
     public static int readPointCoordinate(String name) {
         Scanner in = new Scanner(System.in);
-        System.out.printf("Enter coordinate %s", name);
+        System.out.print(name);
         return in.nextInt();
+    }
 
+    public static void printColor(double x, double y, SimpleColor color) {
+        System.out.printf("FOR X = %1$S AND Y = %2$S IS POINT IN " + color + " AREA \n", x, y);
+    }
+
+    public static boolean checkResult(SimpleColor color, SimpleColor rightColor) {
+        return color == rightColor;
+    }
+
+    public static int readNumber() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter 1 if you want start program - ");
+        return scanner.nextInt();
     }
 }
+
 
