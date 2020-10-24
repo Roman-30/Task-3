@@ -12,34 +12,32 @@ public class Main {
     }
 
     public static void startProgram(Picture picture) {
-        double restart = readNumber();
 
-        while (restart == 1) {
-            double x = readPointCoordinate("Enter point coordinate x --> ");
-            double y = readPointCoordinate("Enter point coordinate y --> ");
+        double x = readPointCoordinate("Enter point coordinate x --> ");
+        double y = readPointCoordinate("Enter point coordinate y --> ");
 
-            SimpleColor color = picture.getColor(x, y);
+        Point point = new Point(x, y);
 
-            printColor(x, y, color);
+        SimpleColor color = picture.getColor(point);
 
-            restart = readPointCoordinate("Enter number 1 if you want to input new coordinates or 0 if you want finish program - ");
-
-            if (restart == 0) {
-                System.out.print("End.");
-            }
-        }
+        printColor(x, y, color);
     }
 
     public static void testPoint(Picture picture) {
-        double[][] coordinates = {{2, -5, -1, 8, -2, 0}, {3, 0, -2, 2, 1, 4}};
+        Point[] point = {new Point(2, 3), new Point(-5, 0), new Point(-1, -2), new Point(8, 2), new Point(-2, 1), new Point(0, 4)};
         SimpleColor[] correctResults = {SimpleColor.WHITE, SimpleColor.BLUE, SimpleColor.YELLOW, SimpleColor.GRAY, SimpleColor.GREEN, SimpleColor.GRAY};
 
         for (int i = 0; i < 6; i++) {
-            SimpleColor color = picture.getColor(coordinates[0][i], coordinates[1][i]);
-            printColor(coordinates[0][i], coordinates[1][i], color);
+            SimpleColor color = picture.getColor(point[i]);
+            printColor(point[i].x, point[i].y, color);
             SimpleColor rightColor = correctResults[i];
 
-            System.out.printf("%s\n", checkResult(color, rightColor));
+            if (color == rightColor) {
+                System.out.printf("%s\n", checkResult(rightColor, color));
+            } else {
+                System.out.printf("%s\n", checkResult(rightColor, color));
+                System.exit(0);
+            }
         }
     }
 
@@ -55,12 +53,6 @@ public class Main {
 
     public static boolean checkResult(SimpleColor color, SimpleColor rightColor) {
         return color == rightColor;
-    }
-
-    public static int readNumber() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter 1 if you want start program - ");
-        return scanner.nextInt();
     }
 }
 

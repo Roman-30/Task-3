@@ -12,7 +12,9 @@ public class Picture {
         this.rectangle = rectangle;
     }
 
-    public SimpleColor getColor(double x, double y) {
+    public SimpleColor getColor(Point point) {
+        double x = point.x;
+        double y = point.y;
 
         if (parabola.isPointInsideParabola(x, y) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GRAY;
 
