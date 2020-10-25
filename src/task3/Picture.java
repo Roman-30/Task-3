@@ -16,15 +16,15 @@ public class Picture {
         double x = point.x;
         double y = point.y;
 
-        if (parabola.isPointInsideParabola(x, y) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GRAY;
+        if (parabola.isPointInside(x, y) && (rectangle.isPointInside(x, y))) return SimpleColor.GRAY;
 
-        if ((circle.isPointInsideCircle(x, y)) && (rectangle.isPointInsideRectangle(x, y))) return SimpleColor.GREEN;
+        if ((circle.isPointInside(x, y)) && (rectangle.isPointInside(x, y))) return SimpleColor.GREEN;
 
-        if (parabola.isPointInsideParabola(x, y)) return SimpleColor.WHITE;
+        if (parabola.isPointInside(x, y)) return SimpleColor.WHITE;
 
-        if (circle.isPointInsideCircle(x, y)) return SimpleColor.BLUE;
+        if (circle.isPointInside(x, y)) return SimpleColor.BLUE;
 
-        if (rectangle.isPointInsideRectangle(x, y)) return SimpleColor.YELLOW;
+        if (rectangle.isPointInside(x, y)) return SimpleColor.YELLOW;
 
         return SimpleColor.GRAY;
     }

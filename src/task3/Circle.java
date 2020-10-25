@@ -11,7 +11,7 @@ public class Circle {
         this.radius = radius;
     }
 
-    public boolean isPointInsideCircle(double x, double y) {
+    public boolean isPointInside(double x, double y) {
         double dx = x - x0;
         double dy = y - y0;
         double distance = Math.sqrt(dx * dx + dy * dy);

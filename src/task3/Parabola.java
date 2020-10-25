@@ -11,7 +11,7 @@ public class Parabola {
         this.c = c;
     }
 
-    public boolean isPointInsideParabola(double x, double y) {
+    public boolean isPointInside(double x, double y) {
         return y > a * x * x + b * x + c;
     }
 }
