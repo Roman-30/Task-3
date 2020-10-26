@@ -27,7 +27,7 @@ public class Main {
         Point[] point = {new Point(2, 3), new Point(-5, 0), new Point(-1, -2), new Point(8, 2), new Point(-2, 1), new Point(0, 4)};
         SimpleColor[] correctResults = {SimpleColor.WHITE, SimpleColor.BLUE, SimpleColor.YELLOW, SimpleColor.GRAY, SimpleColor.GREEN, SimpleColor.GRAY};
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < point.length; i++) {
             SimpleColor color = picture.getColor(point[i]);
             printColor(point[i].x, point[i].y, color);
             SimpleColor rightColor = correctResults[i];
