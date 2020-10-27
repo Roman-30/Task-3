@@ -40,8 +40,15 @@ public class Main {
         for (TestCase test : cases) {
             Point point = new Point(test.getX(), test.getY());
 
+<<<<<<< HEAD
             SimpleColor color = picture.getColor(point);
             SimpleColor rightColor = test.getRightColor();
+=======
+        for (int i = 0; i < point.length; i++) {
+            SimpleColor color = picture.getColor(point[i]);
+            printColor(point[i].x, point[i].y, color);
+            SimpleColor rightColor = correctResults[i];
+>>>>>>> d1547b2a22c5f6b40b1deb8a0226568a8b623c42
 
             if (checkResult(color, rightColor)) {
                 printColor(point, color);
