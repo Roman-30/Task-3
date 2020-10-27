@@ -7,8 +7,11 @@ public class Main {
     public static void main(String[] args) {
         Picture picture = new Picture(new Circle(-5, 0, 4), new Parabola(1, -4, -2), new Rectangle());
 
-        testPoint(picture);
-        startProgram(picture);
+        if (testPoint(picture)) {
+            startProgram(picture);
+        } else {
+            System.out.println("An error was found in the data. Re-enter the data.");
+        }
     }
 
     public static void startProgram(Picture picture) {
@@ -20,25 +23,36 @@ public class Main {
 
         SimpleColor color = picture.getColor(point);
 
-        printColor(x, y, color);
+        printColor(point, color);
     }
 
-    public static void testPoint(Picture picture) {
-        Point[] point = {new Point(2, 3), new Point(-5, 0), new Point(-1, -2), new Point(8, 2), new Point(-2, 1), new Point(0, 4)};
-        SimpleColor[] correctResults = {SimpleColor.WHITE, SimpleColor.BLUE, SimpleColor.YELLOW, SimpleColor.GRAY, SimpleColor.GREEN, SimpleColor.GRAY};
+    public static boolean testPoint(Picture picture) {
+        boolean result = true;
 
-        for (int i = 0; i < 6; i++) {
-            SimpleColor color = picture.getColor(point[i]);
-            printColor(point[i].x, point[i].y, color);
-            SimpleColor rightColor = correctResults[i];
+        TestCase[] cases = new TestCase[6];
+        cases[0] = new TestCase(2, 3, SimpleColor.WHITE);
+        cases[1] = new TestCase(-5, 0, SimpleColor.BLUE);
+        cases[2] = new TestCase(-1, -2, SimpleColor.YELLOW);
+        cases[3] = new TestCase(8, 2, SimpleColor.GRAY);
+        cases[4] = new TestCase(-2, 0, SimpleColor.GREEN);
+        cases[5] = new TestCase(0, 4, SimpleColor.GRAY);
 
-            if (color == rightColor) {
-                System.out.printf("%s\n", checkResult(rightColor, color));
+        for (TestCase test : cases) {
+            Point point = new Point(test.getX(), test.getY());
+
+            SimpleColor color = picture.getColor(point);
+            SimpleColor rightColor = test.getRightColor();
+
+            if (checkResult(color, rightColor)) {
+                printColor(point, color);
+                System.out.printf("%s\n", result);
             } else {
-                System.out.printf("%s\n", checkResult(rightColor, color));
-                System.exit(0);
+                printColor(point, color);
+                System.out.printf("%s\n", result);
+                result = false;
             }
         }
+        return result;
     }
 
     public static int readPointCoordinate(String name) {
@@ -47,8 +61,8 @@ public class Main {
         return in.nextInt();
     }
 
-    public static void printColor(double x, double y, SimpleColor color) {
-        System.out.printf("FOR X = %1$S AND Y = %2$S IS POINT IN " + color + " AREA \n", x, y);
+    public static void printColor(Point point, SimpleColor color) {
+        System.out.printf("FOR X = %1$S AND Y = %2$S IS POINT IN " + color + " AREA \n", point.getX(), point.getX());
     }
 
     public static boolean checkResult(SimpleColor color, SimpleColor rightColor) {
