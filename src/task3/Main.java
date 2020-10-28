@@ -62,7 +62,7 @@ public class Main {
     }
 
     public static void printColor(Point point, SimpleColor color) {
-        System.out.printf("FOR X = %1$S AND Y = %2$S IS POINT IN " + color + " AREA \n", point.getX(), point.getX());
+        System.out.printf("FOR X = %1$S AND Y = %2$S IS POINT IN " + color + " AREA \n", point.getX(), point.getY());
     }
 
     public static boolean checkResult(SimpleColor color, SimpleColor rightColor) {
