@@ -23,7 +23,7 @@ public class Main {
 
         SimpleColor color = picture.getColor(point);
 
-        printColor(point, color);
+        printProgramResult(point, color);
     }
 
     public static boolean testPoint(Picture picture) {
@@ -39,16 +39,14 @@ public class Main {
 
         for (TestCase test : cases) {
             Point point = new Point(test.getX(), test.getY());
-            
+
             SimpleColor color = picture.getColor(point);
             SimpleColor rightColor = test.getRightColor();
 
-            if (checkResult(color, rightColor)) {
-                printColor(point, color);
-                System.out.printf("%s\n", result);
+            if (color == rightColor) {
+                printTestResult(point, color, rightColor, result);
             } else {
-                printColor(point, color);
-                System.out.printf("%s\n", result);
+                printTestResult(point, color, rightColor, result);
                 result = false;
             }
         }
@@ -61,12 +59,13 @@ public class Main {
         return in.nextInt();
     }
 
-    public static void printColor(Point point, SimpleColor color) {
-        System.out.printf("FOR X = %1$S AND Y = %2$S IS POINT IN " + color + " AREA \n", point.getX(), point.getX());
+    public static void printProgramResult(Point point, SimpleColor color) {
+        System.out.printf("FOR X = %1$S AND Y = %2$S  IS POINT IN " + color + " AREA  \n", point.getX(), point.getY());
     }
 
-    public static boolean checkResult(SimpleColor color, SimpleColor rightColor) {
-        return color == rightColor;
+    public static void printTestResult(Point point, SimpleColor color, SimpleColor rightColor, boolean result) {
+        System.out.printf("FOR X = %1$S AND Y = %2$S Expected " + color + " Color -> Happened %3$S\n", point.getX(), point.getY(), rightColor + " Color");
+        System.out.printf("%s\n", result);
     }
 }
 
