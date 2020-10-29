@@ -59,6 +59,7 @@ public class Main {
         return in.nextInt();
     }
 
+
     public static void printProgramResult(Point point, SimpleColor color) {
         System.out.printf("FOR X = %1$S AND Y = %2$S  IS POINT IN " + color + " AREA  \n", point.getX(), point.getY());
     }
